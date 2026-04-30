@@ -1,0 +1,408 @@
+/* ============================================================
+   Mercury Finds — Design System
+   Warm editorial. All-serif. Generous space.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Newsreader:opsz,wght,ital@6..72,200..800,0;6..72,200..800,1&display=swap');
+
+:root {
+  /* ------ Color ------ */
+  --color-bg: #FAF7F0;            /* warm cream */
+  --color-bg-elev: #F5F0E5;        /* slightly darker cream for cards */
+  --color-bg-deep: #EDE5D3;        /* deepest cream for borders/dividers */
+  --color-ink: #1A1614;            /* deep warm ink — body text */
+  --color-ink-soft: #4A413A;       /* secondary text */
+  --color-ink-muted: #7A6F65;      /* tertiary text, captions */
+  --color-rule: #D9CFB8;           /* horizontal rules, subtle borders */
+  --color-accent: #B8472D;         /* terracotta — links, accents */
+  --color-accent-deep: #8F3520;    /* hover state for accent */
+  --color-accent-soft: #E8B8A8;    /* subtle accent backgrounds */
+
+  /* ------ Typography ------ */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Newsreader', Georgia, 'Times New Roman', serif;
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Type scale — modular, editorial */
+  --type-xs: 0.75rem;     /* 12px — labels, captions */
+  --type-sm: 0.875rem;    /* 14px — meta */
+  --type-base: 1.0625rem; /* 17px — body, slightly larger for serif readability */
+  --type-md: 1.25rem;     /* 20px — pull quotes, lede */
+  --type-lg: 1.5rem;      /* 24px — h4 */
+  --type-xl: 2rem;        /* 32px — h3 */
+  --type-2xl: 2.75rem;    /* 44px — h2 */
+  --type-3xl: 4rem;       /* 64px — h1 */
+  --type-4xl: 5.5rem;     /* 88px — display hero */
+
+  /* ------ Spacing ------ */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --space-11: 12rem;
+
+  /* ------ Layout ------ */
+  --max-width-prose: 65ch;
+  --max-width-content: 1100px;
+  --max-width-wide: 1320px;
+
+  /* ------ Motion ------ */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+  --duration-slow: 600ms;
+}
+
+/* ============================================================
+   Reset & base
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--type-base);
+  font-weight: var(--weight-regular);
+  line-height: 1.6;
+  font-feature-settings: 'kern', 'liga', 'calt';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Subtle paper grain for warm editorial feel */
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(184, 71, 45, 0.015) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(26, 22, 20, 0.015) 0%, transparent 40%);
+  min-height: 100vh;
+}
+
+/* ============================================================
+   Typography
+   ============================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-medium);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: 0;
+  /* Fraunces variable axes for editorial feel */
+  font-variation-settings: 'opsz' 144, 'SOFT' 30, 'WONK' 0;
+}
+
+h1 {
+  font-size: var(--type-3xl);
+  font-weight: var(--weight-light);
+  letter-spacing: -0.035em;
+}
+
+.h-display {
+  font-size: var(--type-4xl);
+  font-weight: var(--weight-light);
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 1;
+}
+
+h2 {
+  font-size: var(--type-2xl);
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.025em;
+}
+
+h3 {
+  font-size: var(--type-xl);
+  font-weight: var(--weight-medium);
+}
+
+h4 {
+  font-size: var(--type-lg);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 var(--space-5) 0;
+  max-width: var(--max-width-prose);
+  font-feature-settings: 'kern', 'liga', 'onum';  /* old-style numerals for editorial feel */
+}
+
+p:last-child { margin-bottom: 0; }
+
+.lede {
+  font-size: var(--type-md);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+  font-weight: var(--weight-regular);
+  font-style: italic;
+  font-family: var(--font-body);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+a:hover { color: var(--color-accent-deep); }
+
+em { font-style: italic; }
+strong { font-weight: var(--weight-semibold); color: var(--color-ink); }
+
+/* Editorial markers — small caps labels, eyebrow text */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--type-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+  display: inline-block;
+}
+
+.dropcap::first-letter {
+  font-family: var(--font-display);
+  font-weight: var(--weight-medium);
+  font-size: 4.5em;
+  float: left;
+  line-height: 0.85;
+  margin: 0.05em 0.08em 0 -0.05em;
+  color: var(--color-accent);
+  font-variation-settings: 'opsz' 144, 'SOFT' 80, 'WONK' 1;
+}
+
+/* ============================================================
+   Layout primitives
+   ============================================================ */
+
+.container {
+  width: 100%;
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.container-prose {
+  width: 100%;
+  max-width: var(--max-width-prose);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+section { padding: var(--space-9) 0; }
+
+.rule {
+  height: 1px;
+  background: var(--color-rule);
+  margin: var(--space-8) 0;
+  border: none;
+}
+
+.rule-ornamental {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--space-8) 0;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-size: var(--type-lg);
+  letter-spacing: 0.5em;
+  font-style: italic;
+  font-weight: var(--weight-light);
+}
+
+.rule-ornamental::before,
+.rule-ornamental::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-rule);
+  margin: 0 var(--space-5);
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  font-family: var(--font-body);
+  font-size: var(--type-base);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--color-ink);
+  color: var(--color-bg);
+  border-color: var(--color-ink);
+}
+
+.btn-primary:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.btn-secondary:hover {
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-accent);
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+  padding: 0;
+}
+
+.btn-ghost:hover { color: var(--color-accent-deep); }
+
+.btn-arrow::after {
+  content: '→';
+  font-family: var(--font-body);
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.btn-arrow:hover::after { transform: translateX(4px); }
+
+/* ============================================================
+   Forms
+   ============================================================ */
+
+.form-row {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+input[type="email"], input[type="text"] {
+  flex: 1;
+  min-width: 240px;
+  padding: var(--space-4) var(--space-5);
+  font-family: var(--font-body);
+  font-size: var(--type-base);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  border: 1px solid var(--color-rule);
+  border-radius: 0;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+
+input[type="email"]:focus, input[type="text"]:focus {
+  outline: none;
+  border-color: var(--color-ink);
+}
+
+input::placeholder { color: var(--color-ink-muted); font-style: italic; }
+
+/* ============================================================
+   Animation utilities
+   ============================================================ */
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-up { animation: fade-up 800ms var(--ease-out) both; }
+.fade-in { animation: fade-in 800ms var(--ease-out) both; }
+
+.delay-1 { animation-delay: 100ms; }
+.delay-2 { animation-delay: 200ms; }
+.delay-3 { animation-delay: 350ms; }
+.delay-4 { animation-delay: 500ms; }
+.delay-5 { animation-delay: 700ms; }
+
+/* ============================================================
+   Responsive — mobile first refinements
+   ============================================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --type-3xl: 2.75rem;
+    --type-4xl: 3.5rem;
+    --type-2xl: 2rem;
+    --type-xl: 1.5rem;
+    --space-9: 4rem;
+    --space-10: 5rem;
+  }
+
+  .container, .container-wide, .container-prose {
+    padding: 0 var(--space-5);
+  }
+
+  section { padding: var(--space-8) 0; }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --type-3xl: 2.25rem;
+    --type-4xl: 2.75rem;
+  }
+
+  .form-row { flex-direction: column; }
+  input[type="email"], input[type="text"] { min-width: 0; width: 100%; }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
