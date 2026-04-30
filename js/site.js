@@ -76,7 +76,6 @@
           // Show success regardless of any non-error response
           form.style.display = 'none';
           if (success) success.classList.add('show');
-          triggerTripwireDownload();
         } else {
           throw new Error('Subscription failed');
         }
@@ -86,22 +85,6 @@
         console.warn('Newsletter form network warning:', err);
         form.style.display = 'none';
         if (success) success.classList.add('show');
-        triggerTripwireDownload();
-      }
-
-      function triggerTripwireDownload() {
-        try {
-          var pdfPath = form.getAttribute('data-tripwire-pdf') || '/assets/sample.pdf';
-          var a = document.createElement('a');
-          a.href = pdfPath;
-          a.download = '';
-          a.rel = 'noopener';
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-        } catch (e) {
-          console.warn('Tripwire download trigger failed:', e);
-        }
       }
     });
   }
