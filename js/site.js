@@ -41,7 +41,7 @@
   // Posts to a Cloudflare Worker that fronts the Beehiiv API.
   // The Worker URL gets injected at deploy time; falls back to a placeholder
   // that always returns success during local development.
-  const NEWSLETTER_ENDPOINT = '/api/subscribe';
+  const NEWSLETTER_ENDPOINT = 'https://api.mercuryfinds.com/api/subscribe';
 
   const form = document.getElementById('newsletter-form');
   const success = document.getElementById('newsletter-success');
